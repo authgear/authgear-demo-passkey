@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2015",
-    "lib": ["DOM", "ES2015"],
+    "lib": ["DOM", "ES2015", "ES2018"],
     "moduleResolution": "node",
     "module": "es2020",
     "resolveJsonModule": true,

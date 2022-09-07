@@ -39,7 +39,9 @@ function AppRoutes() {
 }
 
 async function init() {
+  // @ts-expect-error
   const clientID = process.env.CLIENT_ID;
+  // @ts-expect-error
   const endpoint = process.env.ENDPOINT;
   await authgear.configure({
     clientID,
