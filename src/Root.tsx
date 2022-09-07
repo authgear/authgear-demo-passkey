@@ -1,7 +1,8 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, useCallback } from "react";
 import cn from "classnames";
 import { tokens } from "@fluentui/react-theme";
 import { makeStyles, Text, Button, Image } from "@fluentui/react-components";
+import authgear, { Page } from "@authgear/web";
 import { UserInfoContext } from "./UserInfoContext";
 
 import logo from "./logo.svg";
@@ -19,6 +20,19 @@ const useStyles = makeStyles({
 export default function Root(): ReactElement {
   const classes = useStyles();
   const { userInfo } = useContext(UserInfoContext);
+
+  const redirectURI = window.location.origin + "/";
+
+  const onClickSettings = useCallback(() => {
+    authgear.open(Page.Settings).catch((err) => console.error(err));
+  }, []);
+  const onClickSignOut = useCallback(() => {
+    authgear
+      .logout({
+        redirectURI,
+      })
+      .catch((err) => console.error(err));
+  }, [redirectURI]);
 
   const email = userInfo?.email ?? "-";
   const sub = userInfo?.sub ?? "-";
@@ -43,8 +57,12 @@ export default function Root(): ReactElement {
           </Text>
         </div>
         <div className={styles.buttons}>
-          <Button appearance="primary">Profile and Account Settings</Button>
-          <Button appearance="secondary">Sign out</Button>
+          <Button appearance="primary" onClick={onClickSettings}>
+            Profile and Account Settings
+          </Button>
+          <Button appearance="secondary" onClick={onClickSignOut}>
+            Sign out
+          </Button>
         </div>
         <div className={styles.footer}>
           <Text size={200}>Powered by</Text>
