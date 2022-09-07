@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import cn from "classnames";
 import { tokens } from "@fluentui/react-theme";
 import { makeStyles, Text, Button, Image } from "@fluentui/react-components";
+import { UserInfoContext } from "./UserInfoContext";
+
 import logo from "./logo.svg";
 import styles from "./Root.module.css";
 
@@ -15,6 +18,11 @@ const useStyles = makeStyles({
 
 export default function Root() {
   const classes = useStyles();
+  const { userInfo } = useContext(UserInfoContext);
+
+  const email = userInfo?.email ?? "-";
+  const sub = userInfo?.sub ?? "-";
+
   return (
     <div className={cn(classes.background, styles.root)}>
       <div className={styles.content}>
@@ -23,7 +31,7 @@ export default function Root() {
         </Text>
         <div>
           <Text block={true} as="p" size={500} weight="semibold">
-            user@example.com
+            {email}
           </Text>
           <Text
             className={classes.secondaryText}
@@ -31,7 +39,7 @@ export default function Root() {
             as="p"
             size={200}
           >
-            9c165b7b-734d-4ed5-99ac-0c789a55d411
+            {sub}
           </Text>
         </div>
         <div className={styles.buttons}>

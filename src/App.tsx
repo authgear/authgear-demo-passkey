@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import authgear from "@authgear/web";
 
 import Authenticated from "./Authenticated";
+import { UserInfoContextProvider } from "./UserInfoContext";
 
 const Root = lazy(async () => import("./Root"));
 const OAuthRedirect = lazy(async () => import("./OAuthRedirect"));
@@ -68,7 +69,9 @@ export default function App() {
 
   return (
     <FluentProvider theme={webLightTheme}>
-      <AppRoutes />
+      <UserInfoContextProvider>
+        <AppRoutes />
+      </UserInfoContextProvider>
     </FluentProvider>
   );
 }

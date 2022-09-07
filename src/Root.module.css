@@ -5,7 +5,7 @@
 
 .content {
   @apply px-5 py-20;
-  @apply large:self-center;
+  @apply large:self-center large:min-w-[320px];
   @apply flex flex-col;
   @apply gap-y-4;
 }
