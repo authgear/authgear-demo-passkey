@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - '*'
+    - '!gh-pages'
+    tags:
+    - '*'
+  pull_request:
+    branches:
+    - '*'
+    - '!gh-pages'
+
+jobs:
+  check:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "16.15.1"
+    - run: npm ci
+    - run: npm run typecheck
+      if: ${{ !cancelled() }}
+    - run: npm run eslint
+      if: ${{ !cancelled() }}
+    - run: npm run format
+      if: ${{ !cancelled() }}
+    - run: npm run build
+      if: ${{ !cancelled() }}
+  publish:
+    runs-on: ubuntu-20.04
+    needs: check
+    env:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      ENDPOINT: ${{ secrets.ENDPOINT }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: "Create .env"
+      run: |
+        rm -f .env
+        touch .env
+        echo CLIENT_ID="${{ secrets.CLIENT_ID }}" >> .env
+        echo ENDPOINT="${{ secrets.ENDPOINT }}" >> .env
+    - run: npm ci
+    - run: npm run build
+    - name: "Deploy to GitHub Actions"
+      if: ${{ github.repository == 'authgear/authgear-demo-passkey' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
