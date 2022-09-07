@@ -1,0 +1,22 @@
+.root {
+  @apply min-h-screen;
+  @apply flex flex-col;
+}
+
+.content {
+  @apply px-5 py-20;
+  @apply large:self-center;
+  @apply flex flex-col;
+  @apply gap-y-4;
+}
+
+.buttons {
+  @apply flex flex-col;
+  @apply gap-y-4;
+  @apply my-4;
+}
+
+.footer {
+  @apply flex flex-row;
+  @apply gap-x-3;
+}

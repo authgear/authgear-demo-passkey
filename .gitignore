@@ -1,0 +1,14 @@
+*.jks
+*.keystore
+*.pfx
+*.p12
+*.cer
+*.cert
+*.pem
+*.key
+.env
+docker-compose.override.yml
+
+node_modules/
+dist/
+.parcel-cache/
