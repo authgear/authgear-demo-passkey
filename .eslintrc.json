@@ -1,0 +1,21 @@
+{
+  "plugins": ["@oursky"],
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "plugin:@oursky/eslint",
+    "plugin:@oursky/oursky",
+    "plugin:@oursky/typescript",
+    "plugin:@oursky/react",
+    "plugin:@oursky/react-hooks"
+  ],
+  "env": {
+    "browser": true
+  },
+  "globals": { "Set": "readonly", "Map": "readonly" },
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
+}

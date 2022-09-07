@@ -5,9 +5,12 @@
   "scripts": {
     "start": "parcel serve ./src/*.html",
     "build": "parcel build ./src/*.html",
-    "format": "prettier --list-different --write ./src"
+    "format": "prettier --list-different --write ./src",
+    "eslint": "eslint './src/**/*.{js,ts,jsx,tsx}'"
   },
   "devDependencies": {
+    "@oursky/eslint-plugin": "10.0.0",
+    "eslint": "8.23.0",
     "parcel": "2.7.0",
     "prettier": "2.7.1",
     "process": "^0.11.10",

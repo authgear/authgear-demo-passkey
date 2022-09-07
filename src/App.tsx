@@ -1,4 +1,6 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+/* global process */
+
+import { lazy, Suspense, useEffect, useState, ReactElement } from "react";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import authgear from "@authgear/web";
@@ -45,7 +47,7 @@ async function init() {
   });
 }
 
-export default function App() {
+export default function App(): ReactElement | null {
   const [ok, setOK] = useState(false);
   const [error, setError] = useState<unknown>(null);
 

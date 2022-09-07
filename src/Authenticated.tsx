@@ -24,7 +24,7 @@ export default function Authenticated(
           console.error(err);
         });
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, redirectURI]);
 
   if (isAuthenticated) {
     // @ts-expect-error

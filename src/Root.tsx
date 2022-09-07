@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { ReactElement, useContext } from "react";
 import cn from "classnames";
 import { tokens } from "@fluentui/react-theme";
 import { makeStyles, Text, Button, Image } from "@fluentui/react-components";
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Root() {
+export default function Root(): ReactElement {
   const classes = useStyles();
   const { userInfo } = useContext(UserInfoContext);
 

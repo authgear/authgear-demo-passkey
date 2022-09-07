@@ -47,7 +47,7 @@ export function UserInfoContextProvider(
       },
     };
     fetchUserInfo();
-  }, []);
+  }, [fetchUserInfo]);
 
   const { children } = props;
 

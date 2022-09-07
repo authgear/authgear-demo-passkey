@@ -1,3 +1,4 @@
+/* global process */
 import("classnames").finally(() => {});
 import("react").finally(() => {});
 
