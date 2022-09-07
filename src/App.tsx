@@ -1,12 +1,21 @@
+import { lazy, Suspense } from "react";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Root from "./Root";
+
+const Root = lazy(async () => import("./Root"));
 
 function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index={true} element={<Root />} />
+        <Route
+          index={true}
+          element={
+            <Suspense fallback={null}>
+              <Root />
+            </Suspense>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
