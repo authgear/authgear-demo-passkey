@@ -24,7 +24,12 @@ export default function Root(): ReactElement {
   const redirectURI = window.location.origin + "/";
 
   const onClickSettings = useCallback(() => {
-    authgear.open(Page.Settings).catch((err) => console.error(err));
+    authgear
+      .open(Page.Settings, {
+        //FIXME: https://github.com/authgear/authgear-sdk-js/issues/213
+        openInSameTab: true,
+      })
+      .catch((err) => console.error(err));
   }, []);
   const onClickSignOut = useCallback(() => {
     authgear
