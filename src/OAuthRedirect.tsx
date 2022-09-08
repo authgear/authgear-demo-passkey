@@ -2,6 +2,7 @@ import { useEffect, useContext, ReactElement } from "react";
 import authgear from "@authgear/web";
 import { UserInfoContext } from "./UserInfoContext";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function OAuthRedirect(): ReactElement | null {
   const navigate = useNavigate();
@@ -19,5 +20,5 @@ export default function OAuthRedirect(): ReactElement | null {
     );
   }, [navigate, setUserInfo]);
 
-  return null;
+  return <Loading />;
 }

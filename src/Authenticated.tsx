@@ -2,13 +2,14 @@ import { ReactNode, useEffect, ReactElement } from "react";
 import authgear from "@authgear/web";
 
 export interface AuthenticatedProps {
+  fallback?: ReactNode;
   children?: ReactNode;
 }
 
 export default function Authenticated(
   props: AuthenticatedProps
 ): ReactElement | null {
-  const { children } = props;
+  const { children, fallback } = props;
   const isAuthenticated = authgear.sessionState === "AUTHENTICATED";
 
   const redirectURI = window.location.origin + "/oauth-redirect";
@@ -31,5 +32,6 @@ export default function Authenticated(
     return children ?? null;
   }
 
-  return null;
+  // @ts-expect-error
+  return fallback;
 }

@@ -5,6 +5,7 @@ import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import authgear from "@authgear/web";
 
+import Loading from "./Loading";
 import Authenticated from "./Authenticated";
 import { UserInfoContextProvider } from "./UserInfoContext";
 
@@ -18,8 +19,8 @@ function AppRoutes() {
         <Route
           index={true}
           element={
-            <Suspense fallback={null}>
-              <Authenticated>
+            <Suspense fallback={<Loading />}>
+              <Authenticated fallback={<Loading />}>
                 <Root />
               </Authenticated>
             </Suspense>
@@ -28,7 +29,7 @@ function AppRoutes() {
         <Route
           path="/oauth-redirect"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<Loading />}>
               <OAuthRedirect />
             </Suspense>
           }
@@ -68,7 +69,7 @@ export default function App(): ReactElement | null {
   }
 
   if (!ok) {
-    return null;
+    return <Loading />;
   }
 
   return (
