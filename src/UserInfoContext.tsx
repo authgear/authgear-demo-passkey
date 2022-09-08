@@ -46,7 +46,9 @@ export function UserInfoContextProvider(
         }
       },
     };
-    fetchUserInfo();
+    if (authgear.sessionState === "AUTHENTICATED") {
+      fetchUserInfo();
+    }
   }, [fetchUserInfo]);
 
   const { children } = props;
