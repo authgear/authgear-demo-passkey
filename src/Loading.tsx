@@ -16,7 +16,7 @@ export default function Loading(): ReactElement {
   return (
     <div className={cn(styles.root, classes.background)}>
       <Text as="h1" block={true} size={900}>
-        Signup/Login to Authgear Example
+        Signup/Login to Authgear Example...
       </Text>
     </div>
   );
