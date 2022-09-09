@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Authgear Demo for passkey</title>
+    <!-- Non-codesplit CSS Modules will be included into a CSS bundle. -->
+    <!-- The CSS bundle sometimes can be loaded more then once. -->
+    <!-- What matters is that the CSS bundle is inserted after <style> of FluentUI -->
+    <!-- which overrides <style> -->
+    <!-- To make loading the CSS bundle twice has no harm, we need to ensure such loading -->
+    <!-- will not introduce specificity issue -->
+    <!-- The specificity issue comes from @tailwind base -->
+    <!-- So we introduce a CSS specifically for @tailwind base -->
+    <!-- The load-twice CSS bundle becomes index.css, which only contains CSS Modules class names -->
+    <!-- THe CSS Modules class names will not clash with FluentUI if written with care. -->
+    <link rel="stylesheet" href="./base.css" />
     <link rel="stylesheet" href="./index.css" />
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
