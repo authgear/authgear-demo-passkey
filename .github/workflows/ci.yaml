@@ -14,12 +14,12 @@ on:
 
 jobs:
   check:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
-        node-version: "16.15.1"
+        node-version: "18.x"
     - run: npm ci
     - run: npm run typecheck
       if: ${{ !cancelled() }}
@@ -30,13 +30,16 @@ jobs:
     - run: npm run build
       if: ${{ !cancelled() }}
   publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: check
     env:
       CLIENT_ID: ${{ secrets.CLIENT_ID }}
       ENDPOINT: ${{ secrets.ENDPOINT }}
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "18.x"
     - name: "Create .env"
       run: |
         rm -f .env
