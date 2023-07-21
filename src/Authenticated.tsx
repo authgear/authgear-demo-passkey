@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, ReactElement } from "react";
-import authgear from "@authgear/web";
+import authgear, { PromptOption } from "@authgear/web";
 
 export interface AuthenticatedProps {
   fallback?: ReactNode;
@@ -19,7 +19,7 @@ export default function Authenticated(
       authgear
         .startAuthentication({
           redirectURI,
-          prompt: "login",
+          prompt: PromptOption.Login,
         })
         .catch((err) => {
           console.error(err);
