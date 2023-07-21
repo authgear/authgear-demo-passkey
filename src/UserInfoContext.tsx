@@ -24,14 +24,14 @@ export interface UserInfoContextProviderProps {
 }
 
 export function UserInfoContextProvider(
-  props: UserInfoContextProviderProps
+  props: UserInfoContextProviderProps,
 ): ReactElement | null {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
   const fetchUserInfo = useCallback(() => {
     authgear.fetchUserInfo().then(
       (userInfo) => setUserInfo(userInfo),
-      (err) => console.error(err)
+      (err) => console.error(err),
     );
   }, []);
 

@@ -60,7 +60,7 @@ export default function App(): ReactElement | null {
       (e) => {
         setError(e);
         console.error(e);
-      }
+      },
     );
   }, []);
 

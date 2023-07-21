@@ -7,7 +7,7 @@ export interface AuthenticatedProps {
 }
 
 export default function Authenticated(
-  props: AuthenticatedProps
+  props: AuthenticatedProps,
 ): ReactElement | null {
   const { children, fallback } = props;
   const isAuthenticated = authgear.sessionState === "AUTHENTICATED";

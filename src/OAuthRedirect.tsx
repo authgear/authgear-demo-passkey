@@ -16,7 +16,7 @@ export default function OAuthRedirect(): ReactElement | null {
       },
       (err) => {
         console.error(err);
-      }
+      },
     );
   }, [navigate, setUserInfo]);
 
